@@ -11,8 +11,8 @@ async function displayHeader() {
     const width = process.stdout.columns;
     const lines = [
         " ============================================",
-        "|          OpenLayer check-in Bot            |",
-        "|         github.com/recitativonika          |",
+        "|          OpenLayer 签到机器人              |",
+        "|         github.com/Alocem          |",
         " ============================================"
     ];
 
@@ -39,11 +39,12 @@ async function showUserData(token, proxyAddress) {
   try {
     const userData = await retrieveUserInfo(token);
 
-    console.log(`Username: ${userData.xUsername.bold.yellow} | ${userData.eggInfo.eggInfo.name} ${userData.eggInfo.eggInfo.type} ${userData.eggInfo.eggInfo.info} `.white);
-    console.log(`Multiplier: ${userData.point.multiplier.toString().bold.yellow}x | Total checkin: ${userData.point.consecutiveCheckinCount.toString().bold.yellow} `.white);
-    console.log(`Points: ${userData.point.currentPoints.toString().bold.green}`);
+    // Displaying user data in Chinese
+    console.log(`用户名: ${userData.xUsername.bold.yellow} | ${userData.eggInfo.eggInfo.name} ${userData.eggInfo.eggInfo.type} ${userData.eggInfo.eggInfo.info} `.white);
+    console.log(`倍数: ${userData.point.multiplier.toString().bold.yellow}x | 总签到次数: ${userData.point.consecutiveCheckinCount.toString().bold.yellow} `.white);
+    console.log(`积分: ${userData.point.currentPoints.toString().bold.green}`);
     if (proxyAddress) {
-      console.log(`Using Proxy: `.white + proxyAddress.cyan);
+      console.log(`使用代理: `.white + proxyAddress.cyan);
     }
     console.log();
   } catch (error) {
@@ -72,7 +73,7 @@ async function authenticateUser(token, proxyAddress = null) {
 async function initiateCheckIn(proxyEnabled) {
   for (let i = 0; i < configuration.length; i++) {
     try {
-      console.log(`========================== Account ${i + 1} ==========================`.bold.cyan);
+      console.log(`========================== 账户 ${i + 1} ==========================`.bold.cyan);
 
       const token = configuration[i].token;
       const proxyAddress = proxyEnabled ? configuration[i].proxy : null;
@@ -81,9 +82,9 @@ async function initiateCheckIn(proxyEnabled) {
       await showUserData(token, proxyAddress);
 
       if (response.msg.includes('already checked in')) {
-        logCheckInStatus('Check-in failed: Already checked in.', 'red');
+        logCheckInStatus('签到失败: 已经签到过了。', 'red');
       } else {
-        logCheckInStatus('Check-in completed successfully.', 'green');
+        logCheckInStatus('签到成功完成。', 'green');
       }
 
       console.log();
@@ -99,28 +100,28 @@ function logCheckInStatus(message, color) {
 }
 
 function logError(error) {
-  console.log(`[${moment().format('HH:mm:ss')}] Error: ${error.message}`.red);
+  console.log(`[${moment().format('HH:mm:ss')}] 错误: ${error.message}`.red);
 }
 
 (async () => {
   await displayHeader();
 
-  const proxyChoice = readlineSync.question('Do you want to use proxies? (y/n): '.bold.cyan);
+  const proxyChoice = readlineSync.question('您是否要使用代理？ (y/n): '.bold.cyan);
   const proxyEnabled = proxyChoice.toLowerCase() === 'y';
 
-  const proxyStatus = proxyEnabled ? 'with a proxy'.yellow : 'without a proxy'.bold.yellow;
-  console.log(`Starting initial check-in ${proxyStatus}...`.bold.yellow);
+  const proxyStatus = proxyEnabled ? '使用代理'.yellow : '不使用代理'.bold.yellow;
+  console.log(`开始进行初次签到 ${proxyStatus}...`.bold.yellow);
   await initiateCheckIn(proxyEnabled);
 
-  const checkInInterval = 12 * 60 * 60 * 1000;
+  const checkInInterval = 12 * 60 * 60 * 1000; // 12 hours
   const hoursInterval = checkInInterval / (60 * 60 * 1000);
 
   setInterval(() => {
     console.log(
-      `\nProcessing check-in at ${new Date().toLocaleString()}\n`.green
+      `\n正在处理签到，时间: ${new Date().toLocaleString()}\n`.green
     );
     initiateCheckIn(proxyEnabled);
   }, checkInInterval);
 
-  console.log(`Reinitiating the process in ${hoursInterval} hours...`.green);
+  console.log(`每 ${hoursInterval} 小时重新启动签到过程...`.green);
 })();
