@@ -1,63 +1,64 @@
-# OpenLayer check-in Bot 
+OpenLayer 签到机器人
+说明
+这个脚本用于自动化与 OpenLayer 扩展的签到交互。
 
-## Description
-This script automates check-in interaction for OpenLayer extension.
+特性
+每日自动签到
+多账户支持
+代理支持
+先决条件
+Node.js (版本 12 或更高)
+安装
+将该仓库克隆到本地机器：
 
-## Features
-- **Automated check-in interaction everyday**
-- **Multi account**
-- **Proxy support**
+bash
+复制代码
+git clone https://github.com/recitativonika/openlayer-checkin-bot.git
+进入项目目录：
 
-## Prerequisites
-- [Node.js](https://nodejs.org/) (version 12 or higher)
+bash
+复制代码
+cd openlayer-checkin-bot
+安装必要的依赖：
 
-## Installation
+bash
+复制代码
+npm install
+使用方法
+首先注册 OpenLayer 扩展账户，如果没有账户，可以下载扩展并注册（连接钱包、Twitter 并完成任务）。可以在这里完成：
 
-1. Clone the repository to your local machine:
-   ```bash
-   git clone https://github.com/recitativonika/openlayer-checkin-bot.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd openlayer-checkin-bot
-   ```
-4. Install the necessary dependencies:
-   ```bash
-   npm install
-   ```
+设置并修改 config.js 文件。以下是如何设置该文件的步骤。将您的 _open_layer_token_ 放入该文件。如何获取它：
 
-## Usage
-1. Register to OpenLayer extension account first, if you dont have you can download the extension and register (Connect wallet, Twitter and Complete the Quest/task) [here](https://chromewebstore.google.com/detail/openlayer-extension/bcakokeeafaehcajfkajcpbdkfnoahlh).
-2. Set and Modify `config.js`. Below how to setup this file. Put your `_open_layer_token_` in the file. Below how to get it:
-3. To get your `token`, follow this step:
-	- Open the OpenLayer extension and Login to your account, the extension will show in side of your browser.
-	- Go to `inspect element`, right-click the extension then pick inspect elements/inspect.
-	- Go to application tab - look for Local Storage in storage list -> click `chrome-extension://bcakokeeafaehcajfkajcpbdkfnoahlh` and you will see your `_open_layer_token_`.
-	- or you can go Console tab and paste this 
-	```bash
-	localStorage.getItem('_open_layer_token_')
-	```
-4. If you want to use `proxy`, you can add in the config file for each token.
-6. Put your data in `config.js`
-	```bash
-	// config.js
-	module.exports = [
-	  { token: 'token1', proxy: 'proxy1' },
-	  { token: 'token2', proxy: 'proxy2' },
-	  // Add more token-proxy pairs as needed
-	];
+获取您的 Token：
+打开 OpenLayer 扩展并登录您的账户，扩展会显示在浏览器侧边栏。
+右键点击扩展，选择检查元素（Inspect）或按 Ctrl+Shift+I 打开开发者工具。
+转到 Application 标签，查找 Local Storage，然后点击 chrome-extension://bcakokeeafaehcajfkajcpbdkfnoahlh，你将看到 _open_layer_token_。
+或者，你可以转到 Console 标签并粘贴下面的代码：
+javascript
+复制代码
+localStorage.getItem('_open_layer_token_')
+配置代理：
+如果您想使用代理，可以在配置文件中为每个 token 添加代理。
 
-	```
+在 config.js 文件中设置您的数据：
+javascript
+复制代码
+// config.js
+module.exports = [
+  { token: 'token1', proxy: 'proxy1' },
+  { token: 'token2', proxy: 'proxy2' },
+  // 根据需要添加更多 token-代理 配对
+];
+运行脚本：
+运行以下命令来启动脚本：
 
-5. Run the script:
-	```bash
-	node index.js
-	```
+bash
+复制代码
+node index.js
+许可
+本项目根据 MIT 许可证开源，更多细节请查看 LICENSE 文件。
 
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+注意
+此脚本仅供测试用途，使用该脚本可能会违反服务条款，并可能导致您的账户被永久封禁。
 
-## Note
-This script only for testing purpose, using this script might violates ToS and may get your account permanently banned.
-
-My reff code if you want to use :), [you can check in here](https://gist.github.com/recitativonika/f2581184a0b724a451dfe1964241bf06)
+如果你愿意使用我的推荐代码 :), 可以在这里签到。
