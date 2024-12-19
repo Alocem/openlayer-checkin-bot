@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/56302ff2-5ee3-488c-8b39-66bfc26dddf2)OpenLayer 签到机器人
+OpenLayer 签到机器人
 说明
 这个脚本用于自动化与 OpenLayer 扩展的签到交互。
 
