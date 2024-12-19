@@ -1,4 +1,4 @@
-OpenLayer 签到机器人
+![image](https://github.com/user-attachments/assets/56302ff2-5ee3-488c-8b39-66bfc26dddf2)OpenLayer 签到机器人
 说明
 这个脚本用于自动化与 OpenLayer 扩展的签到交互。
 
@@ -36,11 +36,15 @@ npm install
 获取您的 Token：
 打开 OpenLayer 扩展并登录您的账户，扩展会显示在浏览器侧边栏。
 右键点击扩展，选择检查元素（Inspect）或按 Ctrl+Shift+I 打开开发者工具。
+![image](https://github.com/user-attachments/assets/19da45bc-0d3a-475d-9a2b-b37980e5bbb5)
+
 转到 Application 标签，查找 Local Storage，然后点击 chrome-extension://bcakokeeafaehcajfkajcpbdkfnoahlh，你将看到 _open_layer_token_。
 或者，你可以转到 Console 标签并粘贴下面的代码：
 javascript
 复制代码
 localStorage.getItem('_open_layer_token_')
+![image](https://github.com/user-attachments/assets/fbb8fd30-bac9-44be-8775-f3a4898db3a8)
+
 配置代理：
 如果您想使用代理，可以在配置文件中为每个 token 添加代理。
 
@@ -65,4 +69,4 @@ node index.js
 注意
 此脚本仅供测试用途，使用该脚本可能会违反服务条款，并可能导致您的账户被永久封禁。
 
-如果你愿意使用我的推荐代码 :), 可以在这里签到。
+我的推荐码 8WYWUM
