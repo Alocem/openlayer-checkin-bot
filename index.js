@@ -40,7 +40,7 @@ async function showUserData(token, proxyAddress) {
     const userData = await retrieveUserInfo(token);
 
     // 先检查 xUsername 是否存在
-    const username = userData.xUsername ? userData.xUsername : '未知用户名';
+    const username = userData.xUsername ? userData.xUsername : '未绑定推特';
     const eggInfo = userData.eggInfo && userData.eggInfo.eggInfo 
       ? `${userData.eggInfo.eggInfo.name} ${userData.eggInfo.eggInfo.type} ${userData.eggInfo.eggInfo.info}`
       : '未知蛋信息';
