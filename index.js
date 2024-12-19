@@ -39,8 +39,14 @@ async function showUserData(token, proxyAddress) {
   try {
     const userData = await retrieveUserInfo(token);
 
-    // Displaying user data in Chinese
-    console.log(`用户名: ${userData.xUsername.bold.yellow} | ${userData.eggInfo.eggInfo.name} ${userData.eggInfo.eggInfo.type} ${userData.eggInfo.eggInfo.info} `.white);
+    // 先检查 xUsername 是否存在
+    const username = userData.xUsername ? userData.xUsername : '未知用户名';
+    const eggInfo = userData.eggInfo && userData.eggInfo.eggInfo 
+      ? `${userData.eggInfo.eggInfo.name} ${userData.eggInfo.eggInfo.type} ${userData.eggInfo.eggInfo.info}`
+      : '未知蛋信息';
+
+    // 使用三元表达式进行安全输出
+    console.log(`用户名: ${username.bold.yellow} | ${eggInfo.white}`);
     console.log(`倍数: ${userData.point.multiplier.toString().bold.yellow}x | 总签到次数: ${userData.point.consecutiveCheckinCount.toString().bold.yellow} `.white);
     console.log(`积分: ${userData.point.currentPoints.toString().bold.green}`);
     if (proxyAddress) {
