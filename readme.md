@@ -13,12 +13,16 @@ Node.js (版本 12 或更高)
 
 bash
 复制代码
-git clone https://github.com/recitativonika/openlayer-checkin-bot.git
+
+git clone https://github.com/Alocem/openlayer-checkin-bot.git
+
 进入项目目录：
 
 bash
 复制代码
+
 cd openlayer-checkin-bot
+
 安装必要的依赖：
 
 bash
